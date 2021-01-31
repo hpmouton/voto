@@ -11,22 +11,35 @@ public function main() {
     + "3. Vote \n"
     + "4. Get results");
 
-    // var  response = clientEndpoint->post("/graphql",{ query: " { registerVoter(name: \"jim\", id: 11122) }" });
-    // if (response is  http:Response) {
-    //     var jsonResponse = response.getJsonPayload();
+     var  response = clientEndpoint->post("/graphql",{ query: " { registerVoter(name: \"Jerry\", id: 11122) }" });
+     if (response is  http:Response) {
+         var jsonResponse = response.getJsonPayload();
 
-    //     if (jsonResponse is json) {
+         if (jsonResponse is json) {
             
-    //         io:println(jsonResponse.data.greet);
-    //     } else {
-    //         io:println("Invalid payload received:", jsonResponse.message());
-    //     }
+             io:println(jsonResponse.data.greet);
+         } else {
+             io:println("Invalid payload received:", jsonResponse.message());
+         }
 
-    // }
+     }
 
-     var  response = clientEndpoint->post("/graphql",{ query: " { castBallot(id: 6, candidateID: 11122) }" });
-    if (response is  http:Response) {
-        var jsonResponse = response.getJsonPayload();
+        var  response3 = clientEndpoint->post("/graphql",{ query: " { registerCandidate(name: \"Tom\", id: 11133) }" });
+    if (response3 is  http:Response) {
+        var jsonResponse = response3.getJsonPayload();
+
+        if (jsonResponse is json) {
+            
+            io:println(jsonResponse.data);
+        } else {
+            io:println("Invalid payload received:", jsonResponse.message());
+        }
+
+    }
+
+    var  response2 = clientEndpoint->post("/graphql",{ query: " { castBallot(id: 11122, candidateID: 11122) }" });
+    if (response2 is  http:Response) {
+        var jsonResponse = response2.getJsonPayload();
 
         if (jsonResponse is json) {
             
